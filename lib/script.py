@@ -1,56 +1,46 @@
 from capitals import states
 import random
+
 print("Welcome to your States and Capitals exam")
 print("Please type in the correct captial for each State that you are presented, Do this for all 50 States:")
-y = 1
+
 i = 0
 array = []
+
 for state in states:
-    j = 0
-    h = 0
     i += 1  
     state_name = states[i]["name"]
     state_capital = states[i]["capital"]
-    array.append({'state':state_name,'captial':state_capital,'correctcount':j,'incorrectcount':h})
+    array.append({'name': state_name, 'capital': state_capital, 'correctcount': 0,'incorrectcount':0})
     if i == 49:
         break
-# print(array)
+
 random.shuffle(array)
-missed_count = 0
-wins = 0
-loser = 0
-total_guesses = 0
+
+y = 1
+j = 0
+
 while y == 1:
-    user = input("What is the capital of {}? ".format(states[0]["name"]))
+    j += 1
+    user = input("What is the capital of {}? ".format(array[j]["name"]))
     print(user)
-
-    if user == states[0]["capital"]:
-        wins += 1
+    if user == array[j]["capital"]:
         print("You are correct!")
-        y = 0
-        total_guesses += 1
-        print("Your total correct guesses are: " + wins + " Your total incorrect guesses are:" + losers)
+        array[j]["correctcount"] += 1
+        print("Your total correct guesses are: {0}. Your total incorrect guesses are:{1}"
+        .format(array[j]['correctcount'], array[j]['incorrectcount']))
     else:
-        loser += 1
         print("You are incorrect!")
-        count = states[t]["count"]
-        total_guesses += 1
-        print("Your total correct guesses are: " + wins + " Your total incorrect guesses are:" + losers)
-
-    print(states[0])
-
-
-
-
-#print(states[0]["name"])
-
-
-
-# stateKey = dict.keys(states[0])
-# stateValue = dict.get(name, default = None)
-
-# print(stateKey)
-
-
-
-# def function(input)
+        array[j]["incorrectcount"] += 1
+        print("Your total correct guesses are: {0}. Your total incorrect guesses are:{1}"
+        .format(array[j]['correctcount'], array[j]['incorrectcount']))
+    k = 1
+    if j == 10:   
+        while k == 1:        
+            j = 0
+            userEndGame = input("Would You Like to Play Again? Type yes or no (case sensitive) ")
+            if userEndGame == "no":
+                y = 0
+                k = 0
+            elif userEndGame =="yes":
+                k = 0
